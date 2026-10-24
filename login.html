@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đăng nhập / Đăng ký - HUY ST5K</title>
+<style>
+:root{--nav:#032a8c;--sub:#2b2b2b;--bg:#4a4a4a;--panel:#3a3a3a;--field:#e4e6ee;--price:#b9b3ff;--err:#ff8a8a;--ok:#9be3a6;--red:#e0262f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3a3a3a;--panel:#2e2e2e}}
+:root[data-theme="dark"]{--bg:#3a3a3a;--panel:#2e2e2e}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 130px)}
+body{margin:0;background:var(--bg);color:#fff;font-family:"Be Vietnam Pro","Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}
+header{background:var(--nav);display:flex;align-items:center;height:60px;gap:28px}
+.logo{padding:0 30px;height:100%;display:flex;align-items:center;border-right:1px solid #2f4fb0;font-size:20px;letter-spacing:2px;font-weight:300;white-space:nowrap}
+.logo b{color:var(--red);font-weight:400}
+header nav a{font-size:17px;margin-right:34px}
+header a:hover{text-decoration:underline}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50}
+.sub{background:var(--sub);height:56px;display:flex;justify-content:space-around;align-items:center;padding:0 80px}
+.sub a{font-size:17px}
+.sub a:hover{text-decoration:underline}
+.wrap{display:grid;grid-template-columns:1fr;max-width:440px;margin:48px auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px #0006}
+.side{background:radial-gradient(circle at 50% 25%,#ffb340,#c4380f 55%,#2a0a05);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+.side .t1{font-weight:800;font-size:40px;letter-spacing:1px;color:#ffe9b0;text-shadow:0 2px 8px #0008}
+.side p{font-size:14px;margin:10px 0 0;line-height:1.5}
+.panel{background:var(--panel);padding:30px 34px}
+.tabs{position:relative;display:flex;gap:6px;background:#00000040;border-radius:10px;padding:4px;margin-bottom:22px}
+.tabs button{position:relative;z-index:1;flex:1;border:0;border-radius:7px;padding:9px;font-size:15px;color:#fff;background:transparent;cursor:pointer}
+.tabs button[aria-selected="true"]{color:#fff}
+.tabs .ind{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 14px)/2);background:var(--nav);border-radius:7px;box-shadow:0 2px 10px #032a8c88;transition:transform .45s cubic-bezier(.65,0,.25,1)}
+.tabs.reg .ind{transform:translateX(calc(100% + 6px))}
+label{display:block;font-size:13px;margin:0 0 5px}
+.f{margin-bottom:14px}
+input[type=text],input[type=email],input[type=password],input[type=tel]{width:100%;height:38px;border:2px solid transparent;border-radius:8px;background:var(--field);color:#111;padding:0 12px;font-size:14px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--price);outline-offset:2px}
+input[aria-invalid="true"]{border-color:var(--err)}
+.err{color:var(--err);font-size:12px;min-height:16px;margin-top:3px}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:16px;gap:10px}
+.row label{display:flex;align-items:center;gap:6px;margin:0}
+.row a{color:var(--price)}
+.go{width:100%;height:42px;border:0;border-radius:8px;background:var(--red);color:#fff;font-size:16px;cursor:pointer}
+.go:hover{filter:brightness(1.1)}
+.msg{margin-top:14px;font-size:14px;min-height:20px}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--err)}
+.hide{display:none}
+.alt{text-align:center;font-size:13px;margin-top:16px}
+.alt button{background:none;border:0;color:var(--price);cursor:pointer;font-size:13px;text-decoration:underline;padding:0}
+@media (max-width:760px){
+header{gap:12px}.sub{padding:0 12px;height:48px}.sub a{font-size:14px}.logo{padding:0 16px;font-size:17px;border:0}header nav a{margin-right:14px;font-size:15px}
+.wrap{grid-template-columns:1fr;margin:0}.wrap{border-radius:0}.side{padding:22px}.side .t1{font-size:30px}.panel{padding:24px 18px}
+}
+
+header nav a,.lh,.sub a{position:relative}
+header nav a::after,.lh::after,.sub a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+header nav a:hover::after,.lh:hover::after,.sub a:hover::after{transform:scaleX(1)}
+.sub a:hover,header nav a:hover,.lh:hover,.logo:hover{text-decoration:none}
+.logo{transition:letter-spacing .35s,text-shadow .35s}
+.logo:hover{letter-spacing:3.5px;text-shadow:0 0 12px #7a8cffaa}
+@media (prefers-reduced-motion:reduce){*,*::after{transition:none!important;animation:none!important}}
+
+.go{transition:transform .2s,box-shadow .2s,filter .2s}
+.go:hover{transform:translateY(-2px);box-shadow:0 8px 18px #e0262f66}
+.go:active{transform:none}
+.tabs button{transition:background .25s}
+.tabs button:not([aria-selected="true"]):hover{background:#ffffff22}
+input[type=text],input[type=email],input[type=password],input[type=tel]{transition:border-color .2s,box-shadow .25s}
+input:focus{box-shadow:0 0 0 3px #7a8cff88}
+.row a,.alt button,.alt a{transition:color .2s}
+.row a:hover,.alt button:hover,.alt a:hover{color:#fff}
+form:not(.hide){animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}}
+@keyframes inR{from{opacity:0;transform:translateX(26px)}}
+@keyframes inL{from{opacity:0;transform:translateX(-26px)}}
+form.r:not(.hide){animation:inR .45s cubic-bezier(.2,.8,.2,1)}
+form.l:not(.hide){animation:inL .45s cubic-bezier(.2,.8,.2,1)}
+</style>
+</head>
+<body>
+<div class="top">
+<header>
+  <a class="logo" href="index.html">HUY ST<b>5</b>K</a>
+  <nav><a href="index.html">Trang chủ</a><a href="index.html">Sự kiện</a><a href="index.html">Liên hệ</a></nav>
+</header>
+<div class="sub"><a href="index.html">Merchandise</a><a href="index.html">Mua vé</a><a href="#">Giỏ hàng</a><a href="#">Khác</a></div>
+
+</div>
+<main class="wrap">
+  <section class="panel">
+    <div class="tabs" role="tablist"><span class="ind" aria-hidden="true"></span>
+      <button id="tl" role="tab" aria-selected="true" aria-controls="login">Đăng nhập</button>
+      <button id="tr" role="tab" aria-selected="false" aria-controls="reg">Đăng ký</button>
+    </div>
+
+    <form id="login" novalidate>
+      <div class="f"><label for="le">Email</label><input id="le" type="email" autocomplete="email"><div class="err"></div></div>
+      <div class="f"><label for="lp">Mật khẩu</label><input id="lp" type="password" autocomplete="current-password"><div class="err"></div></div>
+      <div class="row"><label><input type="checkbox" id="rem"> Ghi nhớ đăng nhập</label><a href="#" id="forgot">Quên mật khẩu?</a></div>
+      <button class="go" type="submit">Đăng nhập</button>
+      <div class="alt">Chưa có tài khoản? <button type="button" data-go="reg">Đăng ký ngay</button></div>
+    </form>
+
+    <form id="reg" class="hide" novalidate>
+      <div class="f"><label for="rn">Họ và tên</label><input id="rn" type="text" autocomplete="name"><div class="err"></div></div>
+      <div class="f"><label for="re">Email</label><input id="re" type="email" autocomplete="email"><div class="err"></div></div>
+      <div class="f"><label for="rt">Số điện thoại</label><input id="rt" type="tel" autocomplete="tel"><div class="err"></div></div>
+      <div class="f"><label for="rp">Mật khẩu (ít nhất 8 ký tự)</label><input id="rp" type="password" autocomplete="new-password"><div class="err"></div></div>
+      <div class="f"><label for="rc">Nhập lại mật khẩu</label><input id="rc" type="password" autocomplete="new-password"><div class="err"></div></div>
+      <div class="row"><label><input type="checkbox" id="agree"> Tôi đồng ý với điều khoản sử dụng</label></div>
+      <button class="go" type="submit">Tạo tài khoản</button>
+      <div class="alt">Đã có tài khoản? <button type="button" data-go="login">Đăng nhập</button></div>
+    </form>
+    <div class="msg" id="msg" role="status"></div><p style="font-size:11px;color:#ddd;line-height:1.5">Bản demo: tài khoản chỉ được lưu tạm trong phiên trình duyệt. Không sử dụng mật khẩu thật.</p>
+    <div class="alt"><a href="index.html" style="color:var(--price);text-decoration:underline">← Về trang chủ</a></div>
+  </section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const users=JSON.parse(sessionStorage.getItem('huy_users')||'[]'); // demo: chỉ lưu trong phiên trình duyệt
+const forms={login:$('login'),reg:$('reg')};
+const msg=$('msg');
+function show(name){
+  Object.entries(forms).forEach(([k,f])=>f.classList.toggle('hide',k!==name));
+  document.querySelector('.tabs').classList.toggle('reg',name==='reg');
+  forms[name].classList.remove('l','r');forms[name].classList.add(name==='reg'?'r':'l');
+  $('tl').setAttribute('aria-selected',name==='login');
+  $('tr').setAttribute('aria-selected',name==='reg');
+  msg.textContent='';msg.className='msg';
+}
+$('tl').onclick=()=>show('login');
+$('tr').onclick=()=>show('reg');
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(b.dataset.go));
+function setErr(input,text){
+  input.setAttribute('aria-invalid',!!text);
+  input.parentElement.querySelector('.err').textContent=text||'';
+  return !text;
+}
+const mailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const phoneOk=v=>/^(0|\+84)\d{9}$/.test(v.replace(/\s/g,''));
+function say(text,ok){msg.textContent=text;msg.className='msg '+(ok?'ok':'bad')}
+
+forms.login.addEventListener('submit',e=>{
+  e.preventDefault();
+  const em=$('le'),pw=$('lp');
+  const a=setErr(em,mailOk(em.value.trim())?'':'Nhập email đúng định dạng.');
+  const b=setErr(pw,pw.value?'':'Nhập mật khẩu.');
+  if(!a||!b)return;
+  const u=users.find(x=>x.email===em.value.trim().toLowerCase()&&x.pw===pw.value);
+  if(u){sessionStorage.setItem('huy_session',JSON.stringify({name:u.name,email:u.email}));say('Đăng nhập thành công. Xin chào '+u.name+'! Đang chuyển về trang chủ...',true);setTimeout(()=>{const a=document.createElement('a');location.href='home.html'},900)}else say('Email hoặc mật khẩu chưa đúng, hoặc chưa đăng ký tài khoản.',false);
+});
+forms.reg.addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=$('rn'),em=$('re'),t=$('rt'),p=$('rp'),c=$('rc');
+  const r=[
+    setErr(n,n.value.trim().length>=2?'':'Nhập họ và tên.'),
+    setErr(em,mailOk(em.value.trim())?'':'Nhập email đúng định dạng.'),
+    setErr(t,phoneOk(t.value)?'':'Số điện thoại gồm 10 số, bắt đầu bằng 0.'),
+    setErr(p,p.value.length>=8?'':'Mật khẩu cần ít nhất 8 ký tự.'),
+    setErr(c,c.value===p.value&&c.value?'':'Mật khẩu nhập lại chưa khớp.')
+  ];
+  if(r.includes(false))return;
+  if(!$('agree').checked)return say('Hãy đồng ý với điều khoản sử dụng để tiếp tục.',false);
+  const mail=em.value.trim().toLowerCase();
+  if(users.some(x=>x.email===mail))return say('Email này đã được đăng ký.',false);
+  users.push({name:n.value.trim(),email:mail,pw:p.value});sessionStorage.setItem('huy_users',JSON.stringify(users));
+  forms.reg.reset();
+  say('Tạo tài khoản thành công. Bạn có thể đăng nhập ngay.',true);
+  setTimeout(()=>{show('login');$('le').value=mail;$('lp').focus()},1200);
+});
+$('forgot').onclick=e=>{e.preventDefault();say('Tính năng đặt lại mật khẩu sẽ có khi trang kết nối máy chủ.',false)};
+
+
+</script>
+<script>
+(function(){
+const current=JSON.parse(sessionStorage.getItem('huy_session')||'null');
+const page=location.pathname.split('/').pop();
+if(current && page==='index.html'){location.replace('home.html');return;}
+if(!current && (page==='home.html'||page==='account.html')){location.replace('login.html');return;}
+const nav=document.querySelector('header nav');
+if(nav){nav.querySelectorAll('a').forEach(a=>{const t=a.textContent.trim();if(t==='Trang chủ')a.href=current?'home.html':'index.html';if(t==='Sự kiện')a.href=(current?'home.html':'index.html')+'#events';if(t==='Liên hệ')a.href=(current?'home.html':'index.html')+'#contact';});}
+document.querySelectorAll('a').forEach(a=>{
+ const t=a.textContent.trim();
+ if(t==='Đăng xuất'){a.href='index.html';a.addEventListener('click',()=>sessionStorage.removeItem('huy_session'));}
+ if(t==='Merchandise')a.href='merchandise.html';
+ if(t==='Mua vé')a.href=(current?'home.html':'index.html')+'#events';
+ if(t==='Giỏ hàng')a.href='merchandise.html#cart';
+ if(t==='Thông tin tài khoản')a.href=current?'account.html':'login.html';
+});
+if(current){document.querySelectorAll('.user').forEach(e=>{const n=e.querySelector('.uname,.username');if(n)n.textContent=current.name;});}
+})();
+</script>
+</body>
+</html>
